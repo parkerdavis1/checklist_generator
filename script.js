@@ -40,7 +40,7 @@ const randomNumberOfSpecies = arr => Math.floor(Math.random() * arr.length);
 
 const chooseRandomBird = arr => arr[Math.floor(Math.random() * arr.length)];
 
-let randomNumberOfEachSpecies = () => Math.floor(Math.random() * 50);
+let randomNumberOfEachSpecies = max => Math.floor(Math.random() * max);
 
 const createChecklistSpeciesArray = arr => {
     let numOfBirds = randomNumberOfSpecies(arr);
@@ -57,7 +57,7 @@ const createChecklistSpeciesArray = arr => {
 const createChecklistArray = speciesArray => {
     let checklist = [];
     for (let species of speciesArray) {
-        checklist.push(randomNumberOfEachSpecies() + ' ' + species);
+        checklist.push(randomNumberOfEachSpecies(50) + ' ' + species);
     }
     return checklist;
 };
