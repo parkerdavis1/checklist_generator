@@ -62,6 +62,7 @@ const birdlists = {
     "Least Bittern"
   ]
 }
+const habitatList = ['desert', 'forest', 'wetlands'];
 
 const getRandom = (max, min) => {
   if (min === undefined) {
@@ -98,9 +99,6 @@ const displayChecklist = habitat => {
   let listDisplay = createChecklistArray(createChecklistSpeciesArray(birdlists[habitat]));
   console.log(listDisplay.join('\n'));
   console.log('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
-  //console.log(createChecklistArray(createChecklistSpeciesArray(birdlists[habitat])));
 }
 
-displayChecklist('desert');
-
-//add functionality to randomly select a habitat
+displayChecklist(habitatList[getRandom(2)]);
