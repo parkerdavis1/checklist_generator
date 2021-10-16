@@ -106,8 +106,10 @@ const displayChecklistCLI = habitat => {
 
 const displayChecklistHTML = habitat => {
     let checklistArray = createChecklistArray(createChecklistSpeciesArray(birdlists[habitat]))
-    let display = `You went to the ${habitat} and saw: <br /> <br />`;
+    let display = '<br /> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <br />';
+    display += `You went to the ${habitat} and saw: <br /> <br />`;
     display += checklistArray.join(' <br>');
+    display += '<br /> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <br />';
     return display;
 }
 
