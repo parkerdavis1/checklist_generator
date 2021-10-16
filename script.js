@@ -94,11 +94,26 @@ const createChecklistArray = speciesArray => {
     return checklist;
 };
 
-const displayChecklist = habitat => {
+const displayChecklistCLI = habitat => {
   console.log(`\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nYou went to the ${habitat} and saw: \n`);
   let listDisplay = createChecklistArray(createChecklistSpeciesArray(birdlists[habitat]));
   console.log(listDisplay.join('\n'));
   console.log('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
 }
 
-displayChecklist(habitatList[getRandom(2)]);
+//displayChecklistCLI(habitatList[getRandom(3)]);
+
+
+const displayChecklistHTML = habitat => {
+    let checklistArray = createChecklistArray(createChecklistSpeciesArray(birdlists[habitat]))
+    let display = `You went to the ${habitat} and saw: <br /> <br />`;
+    display += checklistArray.join(' <br>');
+    return display;
+}
+
+console.log(displayChecklistHTML(habitatList[getRandom(3)]));
+
+let elChecklist = document.getElementById('checklist');
+elChecklist.innerHTML = displayChecklistHTML(habitatList[getRandom(3)]);
+
+//Taxonomic order? Alphabetical order?
