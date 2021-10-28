@@ -43,6 +43,7 @@ createBird(21, "Osprey", "wetlands", 3);
 createBird(22, "Lesser Nighthawk", "desert", 3);
 createBird(23, "Anna's Hummingbird", "desert", 1);
 createBird(24, "Costa's Hummingbird", "desert", 1);
+createBird(25, "Red-faced Warbler", "forest", 1);
 
 const getRandom = (max, min) => {
   if (min === undefined) {
@@ -99,7 +100,7 @@ const createChecklist = speciesArray => {
 const habitatArray = ['wetlands', 'desert', 'forest']
 
 const displayChecklist = () => {
-  let habitat = habitatArray[getRandom(2)];
+  let habitat = habitatArray[getRandom(3)];
   console.log('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n' + 
   `\nYou went to the ${habitat} and saw: \n \n` +
   createChecklist(createChecklistSpeciesArray(habitat)) +
