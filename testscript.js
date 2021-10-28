@@ -63,12 +63,12 @@ const birdInHabitatCount = habitat => {
   return counter;
 };
 
-const createChecklistSpeciesArray = habitatIn => {
-    let numOfBirds = getRandom(birdInHabitatCount(habitatIn), 1);
+const createChecklistSpeciesArray = habitat => {
+    let numOfBirds = getRandom(birdInHabitatCount(habitat), 1);
     let checklistArray = [];
     while (checklistArray.length < numOfBirds) {
         let bird = birds[getRandom(birds.length)];
-        if (bird.habitat === habitatIn) {
+        if (bird.habitat === habitat) {
           if (!checklistArray.includes(bird)) {
             checklistArray.push(bird);
           }
@@ -88,7 +88,7 @@ const abundance = aClass => {
 };
 
 //createChecklistArray needs to be refactored
-const displayChecklist = speciesArray => {
+const createChecklist = speciesArray => {
     let checklist = [];
     for (let species of speciesArray) {
       checklist.push(abundance(species.abundanceClass) + ' ' + species.name);
@@ -96,4 +96,16 @@ const displayChecklist = speciesArray => {
     return checklist.join('\n')
 };
 
-console.log(displayChecklist(createChecklistSpeciesArray('desert')));
+const habitatArray = ['wetlands', 'desert', 'forest']
+
+const displayChecklist = () => {
+  let habitat = habitatArray[getRandom(2)];
+  console.log('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n' + 
+  `\nYou went to the ${habitat} and saw: \n \n` +
+  createChecklist(createChecklistSpeciesArray(habitat)) +
+  '\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'
+  );
+};
+
+displayChecklist();
+// console.log(createChecklist(createChecklistSpeciesArray('desert')));
