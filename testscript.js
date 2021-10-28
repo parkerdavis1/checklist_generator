@@ -1,8 +1,6 @@
-const birds = []
-
+const birds = [];
 
 // "taxonomicRank" is a placeholder for now, subset of full checklist
-
 
 const createBird = (taxonomicRank, name, habitat, abundanceClass) => {
   birds.push({
@@ -11,7 +9,7 @@ const createBird = (taxonomicRank, name, habitat, abundanceClass) => {
     habitat,
     abundanceClass
   })
-}
+};
 
 /*
 abundanceClass 
@@ -52,19 +50,7 @@ const getRandom = (max, min) => {
   } else {
     return Math.floor(Math.random() * (max - min) + min);
   }
-}
-const chooseRandomBird = array => array[getRandom(array.length)];
-
-// How to create checklist length if all birds of any habitat are in the same array...
-
-// If checklist length is larger than number of birds in selected habitat, it won't work...
-
-// Grouping bird objects into habitat objects gets rid of the posibility for multiple
-
-// Could create a habitat bird counter function
-
-// Taxonomic order still feels a little squishy, prone to error, with this method...
-
+};
 
 // Returns number of birds in a given habitat
 const birdInHabitatCount = habitat => {
@@ -75,38 +61,39 @@ const birdInHabitatCount = habitat => {
     }
   }
   return counter;
-}
+};
 
-// console.log(birdInHabitatCount('wetlands'));
-
-const createChecklistSpeciesArray = (array, habitatIn) => {
+const createChecklistSpeciesArray = habitatIn => {
     let numOfBirds = getRandom(birdInHabitatCount(habitatIn), 1);
     let checklistArray = [];
     while (checklistArray.length < numOfBirds) {
-        let bird = chooseRandomBird(array);
+        let bird = birds[getRandom(birds.length)];
         if (bird.habitat === habitatIn) {
           if (!checklistArray.includes(bird)) {
             checklistArray.push(bird);
           }
         }
     }
+    checklistArray.sort((a, b) => a.taxonomicRank - b.taxonomicRank)  //this line adds taxonomic ordering, option for alphabetical order could be added later
     return checklistArray;
 };
 
+// console.log(createChecklistSpeciesArray("wetlands"));
 
-//createChecklistArray needs to be refactored
-const createChecklistArray = speciesArray => {
-    let checklist = [];
-    for (let species of speciesArray) {
-      if (species.abundanceClass === 1) checklist.push(getRandom(5, 1) + ' ' + species.name);
-      else if (species.abundanceClass === 2) checklist.push(getRandom(10, 1) + ' ' + species.name);
-      else if (species.abundanceClass === 3) checklist.push(getRandom(20, 1) + ' ' + species.name);
-      else if (species.abundanceClass === 4) checklist.push(getRandom(50, 1) + ' ' + species.name);
-        // checklist.push(getRandom(10, 1) + ' ' + species);
-    }
-    return checklist;
+const abundance = aClass => {
+      if (aClass === 1) return getRandom(5, 1);
+      else if (aClass === 2) return getRandom(10, 1);
+      else if (aClass === 3) return getRandom(20, 1);
+      else if (aClass === 4) return getRandom(50, 1);
 };
 
-// console.log(birds[getRandom(birds.length)]);
+//createChecklistArray needs to be refactored
+const displayChecklist = speciesArray => {
+    let checklist = [];
+    for (let species of speciesArray) {
+      checklist.push(abundance(species.abundanceClass) + ' ' + species.name);
+    }
+    return checklist.join('\n')
+};
 
-console.log(createChecklistArray(createChecklistSpeciesArray(birds, "wetlands")));
+console.log(displayChecklist(createChecklistSpeciesArray('desert')));
