@@ -129,8 +129,6 @@ const createChecklistSpeciesArray = habitat => {
     return checklistArray;
 };
 
-// console.log(createChecklistSpeciesArray("wetlands"));
-
 const abundance = aClass => {
       if (aClass === 1) return getRandom(5, 1);
       else if (aClass === 2) return getRandom(10, 1);
@@ -138,7 +136,6 @@ const abundance = aClass => {
       else if (aClass === 4) return getRandom(50, 1);
 };
 
-//createChecklistArray needs to be refactored
 const createChecklist = speciesArray => {
     let checklist = [];
     for (let species of speciesArray) {
