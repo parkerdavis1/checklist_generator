@@ -149,7 +149,7 @@ const createChecklist = speciesArray => {
 
 const habitatArray = ['wetlands', 'desert', 'forest']
 
-const displayChecklist = () => {
+const displayChecklistCLI = () => {
   let habitat = habitatArray[getRandom(3)];
   console.log('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n' + 
   `\nYou went to the ${habitat} and saw: \n \n` +
@@ -158,5 +158,4 @@ const displayChecklist = () => {
   );
 };
 
-displayChecklist();
-// console.log(createChecklist(createChecklistSpeciesArray('desert')));
+displayChecklistCLI();
